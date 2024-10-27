@@ -45,3 +45,4 @@ CREATE TABLE repairs (
     costs DOUBLE PRECISION,
     repair_date DATE
 );
+
