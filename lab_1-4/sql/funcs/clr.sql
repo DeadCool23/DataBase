@@ -90,7 +90,7 @@ else:
 $$ LANGUAGE plpython3u;
 
 -- Тест
-CALL find_most_common_repair_type(52);
+CALL find_most_common_repair_type(3);
 
 
 -- Триггер

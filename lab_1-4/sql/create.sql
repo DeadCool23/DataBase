@@ -2,7 +2,7 @@ CREATE DATABASE  autoservice;
 
 \c autoservice;
 
-CREATE TABLE users (
+CREATE TABLE users ( 
     id INT PRIMARY KEY,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
