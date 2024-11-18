@@ -1,9 +1,10 @@
+import json
 import redis
 import psycopg2
-import json
 from faker import Faker
-from time import time, sleep
 from random import randint
+from time import time, sleep
+import matplotlib.pyplot as plt
 
 faker = Faker("ru_RU")
 
@@ -174,41 +175,75 @@ def update_user(cur, con):
 
     return td2 - td1, tr2 - tr1
 
+import matplotlib.pyplot as plt
+
 def compare_times(cur, con):
+    # 1. Сравнение: Чтение данных
     print("Сравнение: Чтение данных")
     t1, t2 = 0, 0
     for _ in range(N_REPEATS):
         td, tr = select_user(cur)
         t1 += td
         t2 += tr
-    print(f"Среднее время чтения:\n\tБД: {t1 / N_REPEATS}\n\tRedis: {t2 / N_REPEATS}")
+    avg_db_time = t1 / N_REPEATS
+    avg_redis_time = t2 / N_REPEATS
+    print(f"Среднее время чтения:\n\tБД: {avg_db_time}\n\tRedis: {avg_redis_time}")
 
+    plt.bar(["БД", "Redis"], [avg_db_time, avg_redis_time], color=["blue", "green"])
+    plt.title("Чтение данных")
+    plt.ylabel("Время (с)")
+    plt.show()
+
+    # 2. Сравнение: Вставка данных
     print("Сравнение: Вставка данных")
     t1, t2 = 0, 0
     for _ in range(N_REPEATS):
         td, tr = insert_user(cur, con)
         t1 += td
         t2 += tr
-        sleep(1)
-    print(f"Среднее время вставки:\n\tБД: {t1 / N_REPEATS}\n\tRedis: {t2 / N_REPEATS}")
+        sleep(10)
+    avg_db_time = t1 / N_REPEATS
+    avg_redis_time = t2 / N_REPEATS
+    print(f"Среднее время вставки:\n\tБД: {avg_db_time}\n\tRedis: {avg_redis_time}")
 
+    plt.bar(["БД", "Redis"], [avg_db_time, avg_redis_time], color=["blue", "green"])
+    plt.title("Вставка данных")
+    plt.ylabel("Время (с)")
+    plt.show()
+
+    # 3. Сравнение: Удаление данных
     print("Сравнение: Удаление данных")
     t1, t2 = 0, 0
     for _ in range(N_REPEATS):
         td, tr = delete_user(cur, con)
         t1 += td
         t2 += tr
-        sleep(1)
-    print(f"Среднее время удаления:\n\tБД: {t1 / N_REPEATS}\n\tRedis: {t2 / N_REPEATS}")
+        sleep(10)
+    avg_db_time = t1 / N_REPEATS
+    avg_redis_time = t2 / N_REPEATS
+    print(f"Среднее время удаления:\n\tБД: {avg_db_time}\n\tRedis: {avg_redis_time}")
 
+    plt.bar(["БД", "Redis"], [avg_db_time, avg_redis_time], color=["blue", "green"])
+    plt.title("Удаление данных")
+    plt.ylabel("Время (с)")
+    plt.show()
+
+    # 4. Сравнение: Обновление данных
     print("Сравнение: Обновление данных")
     t1, t2 = 0, 0
     for _ in range(N_REPEATS):
         td, tr = update_user(cur, con)
         t1 += td
         t2 += tr
-        sleep(1)
-    print(f"Среднее время обновления:\n\tБД: {t1 / N_REPEATS}\n\tRedis: {t2 / N_REPEATS}")
+        sleep(10)
+    avg_db_time = t1 / N_REPEATS
+    avg_redis_time = t2 / N_REPEATS
+    print(f"Среднее время обновления:\n\tБД: {avg_db_time}\n\tRedis: {avg_redis_time}")
+
+    plt.bar(["БД", "Redis"], [avg_db_time, avg_redis_time], color=["blue", "green"])
+    plt.title("Обновление данных")
+    plt.ylabel("Время (с)")
+    plt.show()
 
 def main():
     global USERS_COUNT
