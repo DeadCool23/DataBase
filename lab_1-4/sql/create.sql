@@ -2,13 +2,13 @@ CREATE DATABASE  autoservice;
 
 \c autoservice;
 
-CREATE TABLE users ( 
-    id INT PRIMARY KEY,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50),
-    phone_number VARCHAR(18) UNIQUE,
-    email VARCHAR(50) UNIQUE
-);
+    CREATE TABLE users ( 
+        id INT PRIMARY KEY,
+        first_name VARCHAR(50),
+        last_name VARCHAR(50),
+        phone_number VARCHAR(18) UNIQUE,
+        email VARCHAR(50) UNIQUE
+    );
 
 CREATE TABLE cars (
     id INT PRIMARY KEY,
