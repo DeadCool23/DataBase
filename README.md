@@ -41,10 +41,10 @@ SQL CLR
 
 __Файл:__ sql/funcs/clr.sql
 
-# labs_5-10
+## labs_5-10
 
 Лежат в разных папках
 
-# tasks
+## tasks
 
 задания лабораторных
