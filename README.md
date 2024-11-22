@@ -40,3 +40,11 @@ sql/funcs/
 SQL CLR
 
 __Файл:__ sql/funcs/clr.sql
+
+# labs_5-10
+
+Лежат в разных папках
+
+# tasks
+
+задания лабораторных
